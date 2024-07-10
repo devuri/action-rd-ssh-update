@@ -36,6 +36,9 @@ runs:
         port: ${{ inputs.ssh_port }}
         script: |
           ${GITHUB_ACTION_PATH}/update.sh ${{ inputs.web_app_path }}
+        run: ${{ github.action_path }}/update.sh
+        shell: bash
+        
 
     - name: "Send Update Notification to Slack"
       uses: rtCamp/action-slack-notify@v2
