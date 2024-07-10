@@ -76,3 +76,7 @@ This action will perform the following steps:
 3. Run `composer update` to update dependencies.
 4. Log the update process.
 5. Notify the specified Slack channel of the update status.
+
+## License
+
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
