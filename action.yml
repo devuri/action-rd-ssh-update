@@ -26,7 +26,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - id: rd-updates
     - name: "Execute Remote SSH Updates"
       uses: appleboy/ssh-action@v0.1.10
       with:
@@ -36,7 +35,6 @@ runs:
         port: ${{ inputs.ssh_port }}
         script: |
           ${{ github.action_path }}/update.sh ${{ inputs.web_app_path }}
-      shell: bash
         
 
     - name: "Send Update Notification to Slack"
