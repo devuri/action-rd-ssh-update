@@ -23,6 +23,9 @@ inputs:
   slack_webhook:
     description: 'Slack Webhook URL'
     required: true
+  slack_channel:
+    description: 'The Slack channel for updates'
+    default: 'general'
 runs:
   using: 'composite'
   steps:
@@ -55,7 +58,7 @@ runs:
     - name: "Send Update Notification to Slack"
       uses: rtCamp/action-slack-notify@v2
       env:
-        SLACK_CHANNEL: general
+        SLACK_CHANNEL: ${{ inputs.slack_channel }}
         SLACK_ICON: https://user-images.githubusercontent.com/4777400/225331174-d5ae1c0e-5ec0-493b-aabc-91c4cc6a14c4.png
         SLACK_COLOR: ${{ job.status }}
         SLACK_TITLE: "Web Application Update Notification"
