@@ -35,9 +35,8 @@ runs:
         password: ${{ inputs.ssh_password }}
         port: ${{ inputs.ssh_port }}
         script: |
-          ${GITHUB_ACTION_PATH}/update.sh ${{ inputs.web_app_path }}
-        run: ${{ github.action_path }}/update.sh
-        shell: bash
+          ${{ github.action_path }}/update.sh ${{ inputs.web_app_path }}
+      shell: bash
         
 
     - name: "Send Update Notification to Slack"
