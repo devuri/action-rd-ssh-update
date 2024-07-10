@@ -1,0 +1,30 @@
+name: Update Website
+on:
+  pull_request:
+    types:
+      - closed
+  workflow_dispatch:
+  schedule:
+    # Runs at 00:00 UTC every Sunday
+    - cron: '0 0 * * 0'
+env:
+  WEB_APP_PATH: "/srv/users/myapp/apps/myapp"
+
+jobs:
+  update:
+    name: "Update Web Application"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: 🚀 Update Dependencies
+        uses: devuri/action-rd-ssh-update@main
+        with:
+          web_app_path: ${{ env.WEB_APP_PATH }}
+          ssh_host: ${{ secrets.SSH_HOST }}
+          ssh_username: ${{ secrets.SSH_USERNAME }}
+          ssh_password: ${{ secrets.SSH_PASSWORD }}
+          ssh_port: ${{ secrets.SSH_PORT }}
+          slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
