@@ -36,7 +36,7 @@ on:
     - cron: '0 0 * * 0' # Runs at 00:00 UTC every Sunday
 
 env:
-  WEB_APP_PATH: "/srv/users/uwilson/apps/uwilson"
+  WEB_APP_PATH: "/srv/users/myapp/apps/myapp"
 
 jobs:
   update:
@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Update and Backup Dependencies
-        uses: ./.github/actions/rd-ssh-updates
+        uses: devuri/action-rd-ssh-update@main
         with:
           web_app_path: ${{ env.WEB_APP_PATH }}
           ssh_host: ${{ secrets.SSH_HOST }}
