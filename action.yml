@@ -51,7 +51,7 @@ runs:
           mkdir -p $LOCK_FILE_DIR && cp $LOCK_FILE $LOCK_FILE_BACKUP
 
           echo "➤ Run Updates and Install dependencies..."
-          cd $WEB_APP_PATH && mkdir -p $UPDATES_LOG_DIR && composer update >> $UPDATES_LOG_FILE 2>&1
+          cd $WEB_APP_PATH && mkdir -p $UPDATES_LOG_DIR && composer update --no-dev >> $UPDATES_LOG_FILE 2>&1
 
           echo "✓ Updates Completed!"
 
