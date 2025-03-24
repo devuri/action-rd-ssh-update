@@ -8,15 +8,15 @@ This GitHub Action allows you to update Composer dependencies on a remote server
 
 ## Inputs
 
-| Input            | Description                          | Required | Default  |
-|------------------|--------------------------------------|----------|----------|
-| `web_app_path`   | Path to the web application.         | Yes      | N/A      |
-| `ssh_host`       | SSH host.                            | Yes      | N/A      |
-| `ssh_username`   | SSH username.                        | Yes      | N/A      |
-| `ssh_password`   | SSH password.                        | Yes      | N/A      |
-| `ssh_port`       | SSH port.                            | Yes      | N/A      |
-| `slack_webhook`  | Slack Webhook URL.                   | Yes      | N/A      |
-| `slack_channel`  | The Slack channel for updates.       | No       | `general`|
+| Input             | Description                          | Required | Default  |
+|-------------------|--------------------------------------|----------|----------|
+| `web_app_path`    | Path to the web application.         | Yes      | N/A      |
+| `ssh_host`        | SSH host.                            | Yes      | N/A      |
+| `ssh_username`    | SSH username.                        | Yes      | N/A      |
+| `ssh_private_key` | SSH private key.                     | Yes      | N/A      |
+| `ssh_port`        | SSH port.                            | Yes      | N/A      |
+| `slack_webhook`   | Slack Webhook URL.                   | Yes      | N/A      |
+| `slack_channel`   | The Slack channel for updates.       | No       | `general`|
 
 ## Usage
 
@@ -53,7 +53,7 @@ jobs:
           web_app_path: ${{ env.WEB_APP_PATH }}
           ssh_host: ${{ secrets.SSH_HOST }}
           ssh_username: ${{ secrets.SSH_USERNAME }}
-          ssh_password: ${{ secrets.SSH_PASSWORD }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_port: ${{ secrets.SSH_PORT }}
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
           slack_channel: "general"
@@ -65,7 +65,7 @@ Ensure the following secrets are added to your repository settings:
 
 - `SSH_HOST`
 - `SSH_USERNAME`
-- `SSH_PASSWORD`
+- `SSH_PRIVATE_KEY`
 - `SSH_PORT`
 - `SLACK_WEBHOOK`
 
