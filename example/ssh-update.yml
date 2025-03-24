@@ -25,6 +25,6 @@ jobs:
           web_app_path: ${{ env.WEB_APP_PATH }}
           ssh_host: ${{ secrets.SSH_HOST }}
           ssh_username: ${{ secrets.SSH_USERNAME }}
-          ssh_password: ${{ secrets.SSH_PASSWORD }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_port: ${{ secrets.SSH_PORT }}
           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
