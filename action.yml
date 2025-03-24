@@ -14,8 +14,8 @@ inputs:
   ssh_username:
     description: 'SSH username'
     required: true
-  ssh_password:
-    description: 'SSH password'
+  ssh_private_key:
+    description: 'SSH private key'
     required: true
   ssh_port:
     description: 'SSH port'
@@ -34,7 +34,7 @@ runs:
       with:
         host: ${{ inputs.ssh_host }}
         username: ${{ inputs.ssh_username }}
-        password: ${{ inputs.ssh_password }}
+        key: ${{ inputs.ssh_private_key }}
         port: ${{ inputs.ssh_port }}
         script: |
           set -eo # Stop on error
@@ -42,10 +42,10 @@ runs:
           WEB_APP_PATH=${{ inputs.web_app_path }}
           TIMESTAMP=$(date +%Y%m%d_%H%M%S)
           LOCK_FILE="${WEB_APP_PATH}/composer.lock"
-          LOCK_FILE_DIR="${WEB_APP_PATH}/storage/logs/updates/lock/$(date +%Y/%m)"
+          LOCK_FILE_DIR="${WEB_APP_PATH}/private/update/logs/lock/$(date +%Y/%m)"
           LOCK_FILE_BACKUP="${LOCK_FILE_DIR}/composer.lock.${TIMESTAMP}.bak"
-          UPDATES_LOG_DIR="${WEB_APP_PATH}/storage/logs/$(date +%Y/%m)"
-          UPDATES_LOG_FILE="${WEB_APP_PATH}/storage/logs/$(date +%Y/%m/rd-update-%Y-%m-%d_%H%M%S).log"
+          UPDATES_LOG_DIR="${WEB_APP_PATH}/private/update/logs/$(date +%Y/%m)"
+          UPDATES_LOG_FILE="${WEB_APP_PATH}/private/update/logs/$(date +%Y/%m/rd-update-%Y-%m-%d_%H%M%S).log"
 
           echo "➤ Back up the lock file..."
           mkdir -p $LOCK_FILE_DIR && cp $LOCK_FILE $LOCK_FILE_BACKUP
